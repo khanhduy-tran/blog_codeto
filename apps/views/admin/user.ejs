@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Admin Page!</title>
+    <%- include('layout/head.ejs')%>
+</head>
+<body>
+    <%- include('layout/nav.ejs')%>
+    
+    <div class="card col-sm-12">
+        <div class="card-header">
+            <h4 class="card-title">User</h4>
+        </div>
+        <div class="card-content collapse show">
+            <div class="table-responsive">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Create Time</th>
+                            <th>Update Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <% if(data && data.users){%>
+                        <%for(var i = 0; i < data.users.length; i++){%>
+                            <tr>
+                                <td><%= data.users[i].id%></td>
+                                <td><%= data.users[i].email%></td>
+                                <td><%= data.users[i].first_name%></td>
+                                <td><%= data.users[i].last_name%></td>
+                                <td><%= data.users[i].created_at%></td>
+                                <td><%= data.users[i].updated_at%></td>
+                                <td>
+                                    <a href="" class="btn btn-primary">Edit</a>
+                                    <button class="btn btn-danger ">Delete</button>
+                                </td>
+                            </tr>
+                            <%}%>
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

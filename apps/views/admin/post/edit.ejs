@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <%- include('../layout/head.ejs')%>
+    
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>  
+<script>tinymce.init({selector:'textarea'});</script>
+</head>
+<body>
+    <div class="container">
+        <%- include('../layout/nav.ejs')%>
+        <div class="card" style="height: 902.578px;">
+            <div class="card-header">
+                <h4 class="card-title" id="basic-layout-tooltip">Edit post</h4>
+                <% if(data && data.error){%>
+                    <div class="alert alert-danger col-sm-12"><%=data.error%></div>
+                    <%}%>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                  
+                    <form class="form" method="" action="">
+                        <input type="hidden" id="id" class="id" value="<%if(data&&data.post){%> <%= data.post.id %> <%}%>">
+                        <div class="form-body">
+
+                            <div class="form-group">
+                                <label for="issueinput1">Title</label>
+                                <input type="text" id="issueinput1" class="form-control title" placeholder="Title" name="tittle" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Issue Title" data-original-title="" title="" value="<%if(data&&data.post){%> <%= data.post.tittle %> <%}%>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="issueinput2">Content</label>
+                                <textarea type="text" id="content" class="form-control" placeholder="Content" name="content" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Opened By" data-original-title="" title=""><%if(data&&data.post){%> <%= data.post.content %> <%}%></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="issueinput2">Author</label>
+                                <input type="text" id="issueinput2" class="form-control author" placeholder="Author" name="author" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Opened By" data-original-title="" title="" value="<%if(data&&data.post){%> <%= data.post.author %> <%}%>">
+                            </div>
+
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-warning mr-1">
+                                <a href="/admin"><i class="ft-x">Cancel</i></a>
+                            </button>
+                            <button type="button" class="btn btn-primary post_edit">
+                                <i class="la la-check-square-o"></i>Edit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/js/post.js"></script>
+</body>
+</html>

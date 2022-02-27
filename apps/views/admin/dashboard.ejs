@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Admin Page!</title>
+    <%- include('layout/head.ejs')%>
+</head>
+<body>
+    <%- include('layout/nav.ejs')%>
+    
+    <div class="card col-sm-12">
+        <div class="card-header">
+            <h4 class="card-title">Posts</h4>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-12">
+                    <a href="/admin/post/new" class="btn btn-success pull-right">Add new Post</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-content collapse show">
+            <div class="table-responsive">
+                <table class="table table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Author</th>
+                            <th>Create Time</th>
+                            <th>Update Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <% if(data && data.posts){%>
+                        <%for(var i = 0; i < data.posts.length; i++){%>
+                            <tr>
+                                <td><%= data.posts[i].id%></td>
+                                <td><%= data.posts[i].tittle%></td>
+                                <td><%= data.posts[i].content%></td>
+                                <td><%= data.posts[i].author%></td>
+                                <td><%= data.posts[i].created_at%></td>
+                                <td><%= data.posts[i].updated_at%></td>
+                                <td>
+                                    <a href="/admin/post/edit/<%= data.posts[i].id%>" class="btn btn-primary">Edit</a>
+                                    <button class="btn btn-danger post_delete" post_id="<%= data.posts[i].id%>">Delete</button>
+                                </td>
+                            </tr>
+                            <%}%>
+                        <%}%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/js/post.js"></script>
+</body>
+</html>
